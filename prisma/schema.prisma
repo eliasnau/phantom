@@ -1,0 +1,148 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id    String     @id @default(cuid())
+  email String  @unique
+  emailVerified DateTime?
+
+  name  String?
+  profileImg String?
+  password      String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  sessions Session[]
+
+  twoFactorEnabled Boolean @default(false)
+  twoFactorSecret String?
+  backupCodes String[]
+  
+  maxActiveSessions Int @default(5)
+  notifyOnNewLogin Boolean @default(true)
+  
+  lastLoginAt DateTime?
+  failedLoginAttempts Int @default(0)
+  lockedUntil DateTime?
+
+  banHistory     Ban[]    @relation()
+  bansIssued     Ban[]    @relation("BanIssuer")
+  bansLifted     Ban[]    @relation("BanLifter")
+
+  riskLevel String @default("LOW") // LOW, MEDIUM, HIGH
+
+  emailVerificationToken String?
+
+  PasswordResetToken PasswordResetToken[]
+
+  roles UserRole[]
+}
+
+model Session {
+  id String @id @default(cuid())
+  userId String
+  expires DateTime
+
+  lastActive DateTime @default(now())
+  isValid Boolean @default(true)
+  revokedAt DateTime?
+  revokedReason String?
+  
+  deviceId String?  
+  deviceFingerprint String?
+  trustedDevice Boolean @default(false)
+  
+  ipAddress String?
+  userAgent String?
+  browser String?
+  operatingSystem String?
+  deviceType String?
+  isMobile Boolean?
+  lastLocation String?
+  
+  lastIpAddress String?
+  ipAddressHistory Json?
+  suspiciousActivity Boolean @default(false)
+  
+  sessionToken String @unique
+
+  user User @relation(fields: [userId], references: [id])
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  tokenVersion Int @default(1)
+
+  @@index([userId, isValid])
+}
+
+model Ban {
+  id        String    @id @default(cuid())
+  userId    String
+  user      User      @relation(fields: [userId], references: [id])
+  reason    String
+  note      String?
+  createdAt DateTime  @default(now())
+  expiresAt DateTime?
+  issuedBy  String
+  issuedByUser User   @relation("BanIssuer", fields: [issuedBy], references: [id])
+  liftedAt  DateTime?
+  liftedBy  String?
+  liftedByUser User?  @relation("BanLifter", fields: [liftedBy], references: [id])
+  liftReason String?
+  ipAddress String?
+
+  @@index([userId])
+  @@index([issuedBy])
+  @@index([liftedBy])
+}
+
+model PasswordResetToken {
+  id        String    @id @default(cuid())
+  token     String    @unique
+  userId    String
+  user      User      @relation(fields: [userId], references: [id])
+  expiresAt DateTime
+  usedAt    DateTime?
+  createdAt DateTime  @default(now())
+
+  @@index([token])
+  @@index([userId])
+}
+
+model Role {
+  id          String       @id @default(cuid())
+  name        String      @unique
+  description String?
+  permissions Permission[]
+  users       UserRole[]
+  createdAt   DateTime    @default(now())
+  updatedAt   DateTime    @updatedAt
+}
+
+model Permission {
+  id          String    @id @default(cuid())
+  name        String    @unique
+  description String?
+  roles       Role[]
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+}
+
+model UserRole {
+  id        String   @id @default(cuid())
+  userId    String
+  roleId    String
+  user      User     @relation(fields: [userId], references: [id])
+  role      Role     @relation(fields: [roleId], references: [id])
+  createdAt DateTime @default(now())
+  expiresAt DateTime?
+
+  @@unique([userId, roleId])
+}

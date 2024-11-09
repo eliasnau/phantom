@@ -1,0 +1,12 @@
+{
+  "compilerOptions": {
+    "target": "ES6",
+    "module": "CommonJS",
+    "outDir": "dist",
+    "strict": true,
+    "esModuleInterop": true,
+    "types": ["node", "mocha"],
+    "jsx": "react-jsx"
+  },
+  "include": ["/src/**/*.ts", "test/**/*.ts"]
+}
