@@ -146,3 +146,16 @@ model UserRole {
 
   @@unique([userId, roleId])
 }
+
+model Backup {
+  id         String    @id @default(cuid())
+  type       String    // hourly, daily, weekly
+  filename   String
+  path       String
+  size       BigInt
+  verified   Boolean   @default(false)
+  createdAt  DateTime  @default(now())
+  verifiedAt DateTime?
+
+  @@index([type, createdAt])
+}

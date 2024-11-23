@@ -9,7 +9,8 @@
     "dev": "nodemon src/app.ts",
     "test": "npm run build && mocha dist/test/*",
     "setup:prisma": "prisma generate",
-    "setup:admin": "ts-node scripts/setup-admin.ts"
+    "setup:admin": "ts-node scripts/setup-admin.ts",
+    "backup": "ts-node scripts/backup.ts"
   },
   "keywords": [],
   "author": "",
