@@ -1,4 +1,4 @@
-# Starterkit
+# Phantom.js
 
 This Next.js Starter Kit is a production-ready template that combines modern web development tools and best practices to help you kickstart your next project. Built with security, performance, and developer experience in mind.
 
