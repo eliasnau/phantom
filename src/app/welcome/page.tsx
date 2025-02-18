@@ -16,7 +16,7 @@ export default function Welcome() {
               Welcome aboard! 🎉
             </h1>
             <p className="mt-2 text-sm text-gray-600">
-              We&apos;re excited to have you here. Let's get you started.
+              We&apos;re excited to have you here. Let&apos;s get you started.
             </p>
           </div>
 
