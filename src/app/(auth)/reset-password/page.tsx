@@ -38,13 +38,14 @@ export default function ResetPassword() {
       const { error } = await resetPassword(token, password);
       
       if (error) {
-        setError(error.message || "Failed to reset password");
+        setError(error.message ?? "Failed to reset password");
         return;
       }
 
       router.push("/sign-in?message=Password reset successful");
     } catch (err) {
       setError("An unexpected error occurred");
+      console.error(err);
     } finally {
       setIsLoading(false);
     }

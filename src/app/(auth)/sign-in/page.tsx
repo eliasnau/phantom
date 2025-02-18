@@ -23,20 +23,21 @@ export default function SignIn() {
     setError(null);
 
     try {
-      const { data, error } = await signIn({
+      const { error } = await signIn({
         email,
         password,
         rememberMe: true,
       });
 
       if (error) {
-        setError(error.message || 'Failed to sign in');
+        setError(error.message ?? 'Failed to sign in');
         return;
       }
 
       router.push('/dashboard');
     } catch (err) {
       setError('An unexpected error occurred');
+      console.error(err);
     } finally {
       setIsLoading(false);
     }
@@ -56,7 +57,7 @@ export default function SignIn() {
               Welcome back
             </h2>
             <p className="mt-2 text-sm text-gray-600">
-              Don't have an account?{' '}
+              Don&apos;t have an account?{' '}
               <Link href="/sign-up" className="font-medium text-black hover:text-gray-800">
                 Create one
               </Link>

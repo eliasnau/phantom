@@ -24,13 +24,14 @@ export default function ForgotPassword() {
       const { error } = await forgotPassword(email);
       
       if (error) {
-        setError(error.message || "Failed to send reset email");
+        setError(error.message ?? "Failed to send reset email");
         return;
       }
 
       setSuccess(true);
     } catch (err) {
       setError("An unexpected error occurred");
+      console.error(err);
     } finally {
       setIsLoading(false);
     }
@@ -50,7 +51,7 @@ export default function ForgotPassword() {
               Reset your password
             </h2>
             <p className="mt-2 text-sm text-gray-600">
-              Enter your email address and we'll send you a link to reset your password.
+              Enter your email address and we&apos;ll send you a link to reset your password.
             </p>
           </div>
 
@@ -66,7 +67,7 @@ export default function ForgotPassword() {
               <div className="bg-green-50 rounded-lg p-6 text-green-800">
                 <h3 className="text-lg font-medium">Check your email</h3>
                 <p className="mt-2 text-sm">
-                  We've sent you a link to reset your password. Please check your inbox.
+                  We&apos;ve sent you a link to reset your password. Please check your inbox.
                 </p>
               </div>
               <Link href="/sign-in">
