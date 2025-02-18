@@ -16,7 +16,7 @@ export default function Welcome() {
               Welcome aboard! 🎉
             </h1>
             <p className="mt-2 text-sm text-gray-600">
-              We're excited to have you here. Let's get you started.
+              We&apos;re excited to have you here. Let&apos;s get you started.
             </p>
           </div>
 
@@ -24,7 +24,7 @@ export default function Welcome() {
             <div className="bg-gray-50 rounded-lg p-6 border border-gray-100">
               <h2 className="text-lg font-medium text-gray-900">Your account is ready</h2>
               <p className="mt-1 text-sm text-gray-600">
-                You're now connected to our {process.env.NODE_ENV} server.
+                You&apos;re now connected to our {process.env.NODE_ENV} server.
               </p>
             </div>
 

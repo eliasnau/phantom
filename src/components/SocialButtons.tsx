@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Github } from 'lucide-react';
 import { signInWithGithub } from '@/util/auth-client';
+import Image from 'next/image';
 
 export const SocialButtons = () => {
   const [isGithubLoading, setIsGithubLoading] = useState(false);
@@ -20,9 +21,11 @@ export const SocialButtons = () => {
     <div className="space-y-4">
       <button
         className="w-full flex items-center justify-center px-4 py-2.5 border border-gray-200 rounded-lg shadow-sm text-sm font-medium text-gray-700 bg-white hover:bg-gray-50"
-        onClick={() => {}}
+        // onClick={() => {}}
       >
-        <img 
+        <Image
+          width={24}
+          height={24}
           src="https://www.google.com/favicon.ico" 
           alt="Google" 
           className="w-5 h-5 mr-2"

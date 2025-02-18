@@ -24,20 +24,21 @@ export default function SignUp() {
     setError(null);
 
     try {
-      const { data, error } = await signUp({
+      const { error } = await signUp({
         email,
         password,
         name,
       });
 
       if (error) {
-        setError(error.message || 'Failed to sign up');
+        setError(error.message ?? 'Failed to sign up');
         return;
       }
 
       router.push('/welcome');
     } catch (err) {
       setError('An unexpected error occurred');
+      console.error(err);
     } finally {
       setIsLoading(false);
     }
