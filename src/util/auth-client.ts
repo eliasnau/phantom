@@ -33,7 +33,7 @@ export const signIn = async ({
         email,
         password,
         rememberMe,
-        callbackURL: `/welcome`,
+        callbackURL: "/welcome",
     });
     return { data, error };
 };
@@ -41,9 +41,9 @@ export const signIn = async ({
 export const signInWithGithub = async () => {
     return await authClient.signIn.social({
         provider: "github",
-        callbackURL: `/dashboard`,
-        newUserCallbackURL: `/welcome`,
-        errorCallbackURL: `/auth/error`,
+        callbackURL: "/dashboard",
+        newUserCallbackURL: "/welcome",
+        errorCallbackURL: "/auth/error",
     });
 };
 
