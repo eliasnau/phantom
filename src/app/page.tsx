@@ -1,6 +1,7 @@
 
 import Link from 'next/link';
 import { Github, ArrowRight, Command, Zap, Shield, Globe } from 'lucide-react';
+import { ModeToggle } from '@/components/theme/DarkModeToggle';
 
 export default function Landing() {
   return (
@@ -19,6 +20,7 @@ export default function Landing() {
                 <Github className="h-4 w-4 mr-2" />
                 Star on GitHub
               </a>
+              <ModeToggle />
             </div>
           </div>
         </div>

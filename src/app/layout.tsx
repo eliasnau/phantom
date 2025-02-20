@@ -1,4 +1,5 @@
 import "@/styles/globals.css";
+import { ThemeProvider } from "next-themes";
 
 import { GeistSans } from "geist/font/sans";
 import { type Metadata } from "next";
@@ -20,7 +21,14 @@ export default function RootLayout({
       <body>
         <Toaster position="top-center" />
         {/* <Navbar /> */}
-        {children}
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
+        >
+          {children}
+        </ThemeProvider>
       </body>
     </html>
   );
