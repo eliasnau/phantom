@@ -1,7 +1,16 @@
 
-import Link from 'next/link';
 import { Github, ArrowRight, Command, Zap, Shield, Globe } from 'lucide-react';
 import { ModeToggle } from '@/components/theme/DarkModeToggle';
+import {
+  SignInButton,
+  SignUpButton,
+  SignedIn,
+  SignedOut,
+  UserButton,
+} from '@clerk/nextjs'
+import { Button } from '@/components/ui/button';
+import Link from "next/link"
+import { env } from '@/env';
 
 export default function Landing() {
   return (
@@ -15,11 +24,16 @@ export default function Landing() {
               <span className="ml-2 text-xl font-bold dark:text-white">Starter Kit</span>
             </div>
             <div className="flex items-center space-x-4">
-              <Link href="/sign-in" className="text-sm font-medium hover:text-gray-600 dark:text-gray-300 dark:hover:text-gray-100">Sign In</Link>
-              <a href="https://github.com" className="flex items-center px-4 py-2 rounded-lg bg-black text-white text-sm font-medium hover:bg-gray-800">
-                <Github className="h-4 w-4 mr-2" />
-                Star on GitHub
-              </a>
+              <SignedOut>
+                <Link href={env.NEXT_PUBLIC_CLERK_SIGN_IN_URL}>
+                  <Button>
+                    Sign in
+                  </Button>
+                </Link>
+              </SignedOut>
+              <SignedIn>
+                <UserButton />
+              </SignedIn>
               <ModeToggle />
             </div>
           </div>
