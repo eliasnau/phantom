@@ -1,7 +1,8 @@
 "use client"
-
-import { ToastSection } from "./_components/toast/ToastSection"
 import { Button } from "@/components/ui/button"
+        
+import { ToastSection } from "./_components/toast/ToastSection"
+import { DialogSection } from "./_components/dialog/DialogSection"
 
 export default function PlaygroundPage() {
   return (
@@ -12,8 +13,8 @@ export default function PlaygroundPage() {
       </div>
 
       <div className="space-y-8">
+        <DialogSection />
         <ToastSection />
-        {/* Add more sections here */}
       </div>
     </div>
   )
