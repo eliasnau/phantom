@@ -11,7 +11,7 @@ export function ToastSection() {
       
       <div className="grid gap-4 p-4 border rounded-lg">
         <h3 className="text-lg font-medium">Sonner Examples</h3>
-        <div className="flex gap-2">
+        <div className="flex gap-2 flex-wrap">
           <Button 
             onClick={() => toast("Default notification")}
             variant="outline"
@@ -20,21 +20,30 @@ export function ToastSection() {
           </Button>
           
           <Button 
-            onClick={() => toast.success("Success notification")}
+            onClick={() => toast.success("Success notification", {
+              description: "Operation completed successfully"
+            })}
             variant="outline"
           >
             Success
           </Button>
           
           <Button 
-            onClick={() => {
-                toast.error("An error has occurred", {
-                    description: "If the error persists please contact the owner of this site",
-                })
-            }}
+            onClick={() => toast.error("An error has occurred", {
+              description: "If the error persists please contact support",
+            })}
             variant="outline"
           >
             Error
+          </Button>
+
+          <Button 
+            onClick={() => toast.warning("Warning notification", {
+              description: "This action cannot be undone"
+            })}
+            variant="outline"
+          >
+            Warning
           </Button>
 
           <Button 
@@ -43,7 +52,8 @@ export function ToastSection() {
                 action: {
                   label: "Undo",
                   onClick: () => console.log("Undo clicked")
-                }
+                },
+                description: "You can undo this action within 10 seconds"
               })
             }
             variant="outline"
@@ -51,14 +61,27 @@ export function ToastSection() {
             With Action
           </Button>
         </div>
-
         <h3 className="text-lg font-medium mt-4">React Hot Toast Examples</h3>
         <div className="flex gap-2">
           <Button 
-            onClick={() => hotToast("Simple notification")}
+            onClick={() => {
+              void hotToast.promise(
+                new Promise((resolve, reject) => {
+                  setTimeout(() => {
+                    // eslint-disable-next-line @typescript-eslint/no-unused-expressions, @typescript-eslint/prefer-promise-reject-errors
+                    Math.random() > 0.5 ? resolve('Success!') : reject('Failed!');
+                  }, 2000);
+                }),
+                {
+                  loading: 'Loading...',
+                  success: 'Operation completed!',
+                  error: 'Something went wrong!'
+                }
+              )
+            }}
             variant="outline"
           >
-            Simple
+            Promise Toast
           </Button>
           
           <Button 
