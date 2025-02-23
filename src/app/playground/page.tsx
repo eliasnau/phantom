@@ -1,4 +1,7 @@
+"use client"
 import { Button } from "@/components/ui/button"
+        
+import { ToastSection } from "./_components/toast/ToastSection"
 import { DialogSection } from "./_components/dialog/DialogSection"
 
 export default function PlaygroundPage() {
@@ -11,6 +14,7 @@ export default function PlaygroundPage() {
 
       <div className="space-y-8">
         <DialogSection />
+        <ToastSection />
       </div>
     </div>
   )
