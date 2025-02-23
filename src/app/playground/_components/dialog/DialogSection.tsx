@@ -30,6 +30,18 @@ export function DialogSection() {
             </div>
         </ResponsiveDialog>
       </div>
+      <div className="grid gap-4 p-4 border rounded-lg">
+        <ResponsiveDialog
+        title="Delete Account"
+        description="This action cannot be undone."
+        trigger={<Button variant="destructive">Delete</Button>}
+        >
+            <div className={cn("grid items-start gap-4")}>
+                <Button type="submit" variant="destructive">Delete Account</Button>
+                <Button type="submit" variant="outline">Cancel</Button>
+            </div>
+        </ResponsiveDialog>
+      </div>
     </section>
   )
 }
