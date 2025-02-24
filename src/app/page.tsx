@@ -7,6 +7,7 @@ import {
 import { Button } from '@/components/ui/button';
 import Link from "next/link"
 import { env } from '@/env';
+import { PhantomBadge } from '@/components/badges/phantom-badge';
 import { CustomUserButton as UserButton } from '@/components/auth/user-button';
 
 export default function Landing() {
@@ -57,10 +58,12 @@ export default function Landing() {
               Learn More
             </a>
           </div>
+          <div className="fixed bottom-8 right-8 z-50">
+            <PhantomBadge />
+          </div>
         </div>
       </div>
-
-      {/* Features */}
+      {/* Features section */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           <div className="p-6 rounded-xl border dark:border-gray-700 hover:border-gray-400 dark:hover:border-gray-500 transition-colors dark:text-white">
@@ -80,6 +83,8 @@ export default function Landing() {
           </div>
         </div>
       </div>
+
+      <PhantomBadge variant="default" />
     </div>
   );
 }
