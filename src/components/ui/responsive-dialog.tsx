@@ -29,6 +29,8 @@ interface ResponsiveDialogProps {
   description?: string
   children: React.ReactNode
   className?: string
+  open?: boolean
+  onOpenChange?: (open: boolean) => void
 }
 
 export function ResponsiveDialog({
@@ -36,14 +38,20 @@ export function ResponsiveDialog({
   title,
   description,
   children,
-  className
+  className,
+  open,
+  onOpenChange
 }: ResponsiveDialogProps) {
-  const [open, setOpen] = React.useState(false)
+  const [internalOpen, setInternalOpen] = React.useState(false)
   const isDesktop = useMediaQuery("(min-width: 768px)")
+
+  const isControlled = open !== undefined
+  const isOpen = isControlled ? open : internalOpen
+  const setIsOpen = isControlled ? onOpenChange : setInternalOpen
 
   if (isDesktop) {
     return (
-      <Dialog open={open} onOpenChange={setOpen}>
+      <Dialog open={isOpen} onOpenChange={setIsOpen}>
         <DialogTrigger asChild>
           {trigger}
         </DialogTrigger>
@@ -63,7 +71,7 @@ export function ResponsiveDialog({
   }
 
   return (
-    <Drawer open={open} onOpenChange={setOpen}>
+    <Drawer open={isOpen} onOpenChange={setIsOpen}>
       <DrawerTrigger asChild>
         {trigger}
       </DrawerTrigger>

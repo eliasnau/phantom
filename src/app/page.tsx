@@ -1,17 +1,14 @@
-
 import { Github, ArrowRight, Command, Zap, Shield, Globe } from 'lucide-react';
 import { ModeToggle } from '@/components/theme/DarkModeToggle';
 import {
-  SignInButton,
-  SignUpButton,
   SignedIn,
   SignedOut,
-  UserButton,
 } from '@clerk/nextjs'
 import { Button } from '@/components/ui/button';
 import Link from "next/link"
 import { env } from '@/env';
 import { PhantomBadge } from '@/components/badges/phantom-badge';
+import { CustomUserButton as UserButton } from '@/components/auth/user-button';
 
 export default function Landing() {
   return (
