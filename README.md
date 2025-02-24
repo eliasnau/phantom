@@ -20,9 +20,9 @@ This Next.js Starter Kit is a production-ready template that combines modern web
 
 ## Aditional information
 
-Elias Nau - Author  
+[Elias Nau](https://github.com/eliasnau) - Author  
 <!-- future - Collaborator -->
-Timothee Bels - Co-Author
+[Timothee Bels](https://github.com/belsetbut) - Co-Author
 
 <!-- ### Special thanks to all the contributors below: -->
 
